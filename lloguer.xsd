@@ -10,48 +10,14 @@ elementFormDefault="qualified">
 
 	<xsd:element name="cotxe">
 		<xsd:complexType>
-			<xsd:simpleContent>
-				<xsd:extension base="xsd:string">
-					<xsd:attribute name="matricula" type="x:matricula" use="required"/>
-				</xsd:extension>
-			</xsd:simpleContent>
-			
-<!-- Aqui me falta algo siempre y no se que es -->
-
 			<xsd:sequence>
-				<xsd:element name="marca" type="string" />
-				<xsd:element name="model" type="string" />
-				<xsd:element name="color" type="string" minOccurs="0"/>
+				<xsd:element name="marca" type="xsd:string" />
+				<xsd:element name="model" type="xsd:string" />
+				<xsd:element name="color" type="xsd:string" minOccurs="0"/>
 				<xsd:element name="equipacio" >
-					<xsd:simpleType>
-						<xsd:element name="climatitzador">
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:string">
-								<xsd:enumeration value="Si"/>
-								<xsd:enumeration value="No"/>
-								<xsd:enumeration value="Optional"/>
-							</xsd:restriction>
-						</xsd:simpleType>
-						</xsd:element>
-						<xsd:element name="airbagsLaterals">
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:string">
-								<xsd:enumeration value="Si"/>
-								<xsd:enumeration value="No"/>
-								<xsd:enumeration value="Optional"/>
-							</xsd:restriction>
-						</xsd:simpleType>
-						</xsd:element>
-						<xsd:element name="automatic">
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:string">
-								<xsd:enumeration value="Si"/>
-								<xsd:enumeration value="No"/>
-								<xsd:enumeration value="Optional"/>
-							</xsd:restriction>
-						</xsd:simpleType>
-						</xsd:element>
-						<xsd:element name="cadiraNinPetit">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="climatitzador">
 							<xsd:simpleType>
 								<xsd:restriction base="xsd:string">
 									<xsd:enumeration value="Si"/>
@@ -59,10 +25,39 @@ elementFormDefault="qualified">
 									<xsd:enumeration value="Optional"/>
 								</xsd:restriction>
 							</xsd:simpleType>
-						</xsd:element>
-					</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="airbagsLaterals">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="Si"/>
+									<xsd:enumeration value="No"/>
+									<xsd:enumeration value="Optional"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="automatic">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="Si"/>
+									<xsd:enumeration value="No"/>
+									<xsd:enumeration value="Optional"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+							</xsd:element>
+							<xsd:element name="cadiraNinPetit">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="Si"/>
+										<xsd:enumeration value="No"/>
+										<xsd:enumeration value="Optional"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
 				</xsd:element>
 			</xsd:sequence>
+			<xsd:attribute name="matricula" type="x:matricula" use="required"/>
 		</xsd:complexType>
 	</xsd:element>
 
@@ -73,37 +68,15 @@ elementFormDefault="qualified">
 
 	<xsd:element name="client">
 		<xsd:complexType>
-			<xsd:simpleContent>
-				<xsd:extension base="xsd:string">
-					<xsd:attribute name="dni">
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:string">
-								<xsd:pattern value="[0-9a-z]{9}"/>
-							</xsd:restriction>
-						</xsd:simpleType>
-					</xsd:attribute>
-				</xsd:extension>
-		    </xsd:simpleContent>
-		</xsd:complexType>
-
-<!-- Aqui me falta algo siempre y no se que es -->
-
-		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="nom">
-					<xsd:simpleContent>
-						<xsd:extension base="xsd:string">
-							<xsd:attribute name="tractament" use="required">
-								<xsd:simpleType>
-									<xsd:restriction base="xsd:string">
-										<xsd:pattern value="Sr|Sra"/>
-									</xsd:restriction>
-								</xsd:simpleType>
-							</xsd:attribute>
-						</xsd:extension>
-					</xsd:simpleContent>
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:pattern value="Sr|Sra"/>
+						</xsd:restriction>
+					</xsd:simpleType>
 				</xsd:element>
-				<xsd:element name="telefon" type="string">
+				<xsd:element name="telefon">
 					<xsd:simpleType>
 						<xsd:restriction base="xsd:integer">
 							<xsd:minInclusive value="971230000"/>
@@ -134,6 +107,7 @@ elementFormDefault="qualified">
 					</xsd:simpleType>
 				</xsd:element>
 			</xsd:sequence>
+			<xsd:attribute name="dni" type="x:dni" use="required" />
 		</xsd:complexType>
 	</xsd:element>
 
