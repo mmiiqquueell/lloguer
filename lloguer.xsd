@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.iessonferrer.net/jgonzalez/lloguerCotxes"
+elementFormDefault="qualified">
+
+	<!-- Element cotxe ======================== -->
+
+	<xsd:element name="cotxe" minOccurs="0" maxOccurs="unbounded">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="matricula">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:pattern value="[0-9A-Z]"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+       </xsd:simpleContent>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="marca" type="string" />
+				<xsd:element name="model" type="string" />
+				<xsd:element name="equipacio" >
+					<xsd:simpleType>
+						<xsd:element name="climatitzador"/>
+						<xsd:element name="airbagsLaterals"/>
+						<xsd:element name="automatic"/>
+						<xsd:element name="cadiraNinPetit"/>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+
+
+	<!-- Element client ======================== -->
+
+	<xsd:element name="client" minOccurs="0" maxOccurs="unbounded">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="dni">
+					<xsd:simpleType>
+						<xsd:restriction base="xsd:string">
+							<xsd:pattern value="[0-9A-Za-z]{9}"/>
+						</xsd:restriction>
+					</xsd:simpleType>
+				</xsd:attribute>
+			</xsd:extension>
+       </xsd:simpleContent>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="nom">
+					<xsd:simpleContent>
+						<xsd:extension base="xsd:string">
+							<xsd:attribute name="tractament">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:pattern value="Sr|Sra"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:attribute>
+						</xsd:extension>
+					</xsd:simpleContent>
+				<xsd:element name="telefon" type="string" />
+				<xsd:element name="email" type="string" />
+				<xsd:element name="tipusClient" type="string" />
+				<xsd:element name="lloguer" >
+					<xsd:simpleType>
+						<xsd:element name="cotxe"/>
+						<xsd:element name="dataInici"/>
+						<xsd:element name="dataFi"/>
+					</xsd:simpleType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+<!-- __________________________________________________________________________________________________________ -->
+
+
+
+	<xsd:element name="vendedor">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="nomComplet" type="string"/>
+				<xsd:element name="telefon" type="integer"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+        
+	<xsd:element name="inmobles">
+		<xsd:complexType>
+			<xsd:sequence>
+				
+				<xsd:element name="pis" minOccurs="1" maxOccurs="10">
+
+					<xsd:complexType>
+
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:string">
+								<xsd:attribute name="lloguer" use="required">
+									<xsd:simpleType>
+										<xsd:restriction base="xsd:string">
+											<xsd:pattern value="Si|No"/>
+										</xsd:restriction>
+									</xsd:simpleType>
+								</xsd:attribute>
+							</xsd:extension>
+		             </xsd:simpleContent>
+			
+				<!-- En este punto he probado a poner ComplexType y SimpleType asi como otras opciones pero no logro que lo dé por bueno -->
+						
+						<xsd:element name="venedor"/>
+						<xsd:element name="poblacio">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="Palma"/>
+									<xsd:enumeration value="Binissalem"/>
+									<xsd:enumeration value="Inca"/>
+									<xsd:enumeration value="Manacor"/>
+									<xsd:enumeration value="Maó"/>
+									<xsd:enumeration value="Sant Antoni"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+
+						<xsd:element name="direccio"/>
+
+						<xsd:element name="preu">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="mensual" type="integer"/>
+									<xsd:element name="compra" type="integer"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+
+						<xsd:element name="observacio" maxOccurs="999"/>
+						<xsd:element name="planta" type="integer">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:integer">
+									<xsd:minInclusive value="0"/>
+									<xsd:maxInclusive value="10"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+
+						<xsd:simpleType name="ascensor">
+							<xsd:restriction base="xsd:string">
+								<xsd:pattern value="Si|No"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+
+						<xsd:element name="estat">
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="A reformar"/>
+									<xsd:enumeration value="Bon estat"/>
+									<xsd:enumeration value="Nou"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+
+						<xsd:element name="extres">
+							<xsd:complexType>
+								<xsd:all>
+									<xsd:element name="piscinaComunitaria"/>
+									<xsd:element name="apacarcament"/>
+									<xsd:element name="calefaccioCentral"/>
+									<xsd:element name="aparcament"/>
+									<xsd:element name="portaBlindada"/>
+									<xsd:element name="moblat"/>
+									<xsd:element name="terrassa"/>
+									<xsd:element name="aireAcondicionat"/>
+								</xsd:all>
+							</xsd:complexType>
+						</xsd:element>
+
+					</xsd:complexType>
+
+				</xsd:element>
+				
+				<xsd:element name="aparcament" maxOccurs="10">
+
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="venedor"/>
+							<xsd:element name="poblacio"/>
+							<xsd:element name="direccio"/>
+							
+							<xsd:element name="preu">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="mensual" type="integer"/>
+										<xsd:element name="compra" type="integer"/>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+
+							<xsd:element name="observacio" maxOccurs="999"/>
+							
+							<xsd:element name="cobert">
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:pattern value="Si|No"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+<!-- No he logrado que las Keys las valide -->
+
+	<xsd:key name="venedorkey">
+		<xsd:selector xpath="alies"/>
+		<xsd:field xpath="@ref"/>
+	</xsd:key>
+
+	<xsd:keyref name="venedorref" refer="h:venedorkey">
+		<xsd:selector xpath="alies"/>
+		<xsd:field xpath="."/>
+	</xsd:keyref>
+
+</xsd:schema> <!-- línea 4 -->
