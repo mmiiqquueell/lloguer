@@ -149,20 +149,3 @@ elementFormDefault="qualified">
 	</xsd:keyref>
 
 </xsd:schema>
-
-
-<!-- __________________________________________________________________________________________________________ -->
-
-<!--
-
-X    El documento xml validará bien con el xsd: pasa la validación con xmllint
-
-X    Puedes entregar un xml con el nombre lloguerNoValid.xml que no valide porque haya datos que no cumplan los 			requerimientos del xsd. P.e. un teléfono que no cumpla las condiciones que hemos puesto 
-
-X    Puedes entregar un xml con el nombre lloguerNoKey.xml que no valide porque una keyref apunte a un valor de la 			key que no exista
-
-X    Busca por internet un patrón para validar un email en xsd y aplicarlo al elemento 'email' 
-
--->
-
-
