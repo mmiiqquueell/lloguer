@@ -2,24 +2,22 @@
 
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:x="http://www.iessonferrer.net/jgonzalez/lloguerCotxes"
 targetNamespace="http://www.iessonferrer.net/jgonzalez/lloguerCotxes"
 elementFormDefault="qualified">
 
 	<!-- Element cotxe ======================== -->
 
 	<xsd:element name="cotxe">
-		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
-				<xsd:attribute name="matricula">
-					<xsd:simpleType>
-						<xsd:restriction base="xsd:string">
-							<xsd:pattern value="[0-9A-Z]"/>
-						</xsd:restriction>
-					</xsd:simpleType>
-				</xsd:attribute>
-			</xsd:extension>
-       </xsd:simpleContent>
 		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:string">
+					<xsd:attribute name="matricula" type="x:matricula" use="required"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+			
+<!-- Aqui me falta algo siempre y no se que es -->
+
 			<xsd:sequence>
 				<xsd:element name="marca" type="string" />
 				<xsd:element name="model" type="string" />
@@ -54,13 +52,13 @@ elementFormDefault="qualified">
 						</xsd:simpleType>
 						</xsd:element>
 						<xsd:element name="cadiraNinPetit">
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:string">
-								<xsd:enumeration value="Si"/>
-								<xsd:enumeration value="No"/>
-								<xsd:enumeration value="Optional"/>
-							</xsd:restriction>
-						</xsd:simpleType>
+							<xsd:simpleType>
+								<xsd:restriction base="xsd:string">
+									<xsd:enumeration value="Si"/>
+									<xsd:enumeration value="No"/>
+									<xsd:enumeration value="Optional"/>
+								</xsd:restriction>
+							</xsd:simpleType>
 						</xsd:element>
 					</xsd:simpleType>
 				</xsd:element>
@@ -74,17 +72,22 @@ elementFormDefault="qualified">
 	<!-- Element client ======================== -->
 
 	<xsd:element name="client">
-		<xsd:simpleContent>
-			<xsd:extension base="xsd:string">
-				<xsd:attribute name="dni">
-					<xsd:simpleType>
-						<xsd:restriction base="xsd:string">
-							<xsd:pattern value="[0-9a-z]{9}"/>
-						</xsd:restriction>
-					</xsd:simpleType>
-				</xsd:attribute>
-			</xsd:extension>
-       </xsd:simpleContent>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:string">
+					<xsd:attribute name="dni">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:pattern value="[0-9a-z]{9}"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
+				</xsd:extension>
+		    </xsd:simpleContent>
+		</xsd:complexType>
+
+<!-- Aqui me falta algo siempre y no se que es -->
+
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="nom">
@@ -131,11 +134,11 @@ elementFormDefault="qualified">
 
 
 	<xsd:key name="matriculakey">
-		<xsd:selector xpath="matricula"/>
-		<xsd:field xpath="."/>
+		<xsd:selector xpath="x:matricula"/>
+		<xsd:field xpath="@cotxe"/>
 	</xsd:key>
 
-	<xsd:keyref name="cotxerefkey" refer="xsd:cotxe">
+	<xsd:keyref name="cotxerefkey" refer="cotxe">
 		<xsd:selector xpath="lloguer"/>
 		<xsd:field xpath="@ref"/>
 	</xsd:keyref>
