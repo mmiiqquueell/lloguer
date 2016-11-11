@@ -111,7 +111,12 @@ elementFormDefault="qualified">
 						</xsd:restriction>
 					</xsd:simpleType>
 				</xsd:element>
-				<xsd:element name="email" type="string" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="email" type="emailAddress" minOccurs="0" maxOccurs="unbounded"/>
+				  <xsd:simpleType name="emailAddress"> 
+					 <xsd:restriction base="xsd:string"> 
+						<xsd:pattern value="[^@]+@[^\.]+\..+"/> 
+					 </xsd:restriction> 
+				  </xsd:simpleType>
 				<xsd:element name="tipusClient">
 					<xsd:simpleType>
 						<xsd:restriction base="xsd:string">
